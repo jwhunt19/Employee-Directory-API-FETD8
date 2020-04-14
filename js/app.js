@@ -10,7 +10,6 @@ const modalContainer = document.getElementById('main-container');
 
 // Functions
 function employeeDirectory(data) {
-    console.log(data.results);
     data.results.forEach(employee => {
         mainGrid.innerHTML += `
             <div class="card">
@@ -32,33 +31,61 @@ function employeeDirectory(data) {
       });
 }
 
-modal = employee => modalContainer.innerHTML += `
-    <div class="modal-overlay">
-        <div class="modal">
-            <span>x</span>
-            <div class="modal-img-div">
-                <img src="${employee.picture.large}" alt="${employee.name.first}">
-            </div>
-            <div class="modal-info">
-                <p class="modal-info-name">${employee.name.first} ${employee.name.last}</p>
-                <p class="modal-info-email">${employee.email}</p>
-                <p class="modal-info-city">${employee.location.city}</p>
-            </div>
-            <div class="divider"></div>
-            <div class="modal-contact">
-                <p class="modal-info-phone">${employee.cell}</p>
-                <p class="modal-info-address">${employee.location.street.number} ${employee.location.street.name}, ${employee.location.state} ${employee.location.postcode}</p>
-                <p class="modal-info-dob">Birthday: ${employee.dob.date.slice(5, 7)}/${employee.dob.date.slice(8, 10)}/${employee.dob.date.slice(2, 4)}</p>
-            </div>
-        </div>
-    </div
-`;
+const modal = employee => { 
+    const modalOverlay = document.createElement('div');
+    modalOverlay.className = 'modal-overlay';
+    const modalDiv = document.createElement('div');
+    modalDiv.className = 'modal';
+    const closeButton = document.createElement('span');
+    closeButton.textContent = 'x';
+    const modalImgDiv = document.createElement('div');
+    modalImgDiv.className = 'modal-img-div';
+    const employeeImg = document.createElement('img');
+    employeeImg.src = `${employee.picture.large}`;
+    employeeImg.alt = `${employee.name.first}`;
+    const modalInfo = document.createElement('div');
+    modalInfo.className = 'modal-info';
+    const modalInfoName = document.createElement('p');
+    modalInfoName.className = 'modal-info-name';
+    modalInfoName.textContent = `${employee.name.first} ${employee.name.last}`;
+    const modalInfoEmail = document.createElement('p');
+    modalInfoEmail.className = 'modal-info-email';
+    modalInfoEmail.textContent = `${employee.email}`;
+    const modalInfoCity = document.createElement('p');
+    modalInfoCity.className = 'modal-info-city';
+    modalInfoCity.textContent = `${employee.location.city}`;
+    const divider = document.createElement('div');
+    divider.className = 'divider';
+    const modalContact = document.createElement('div');
+    modalContact.className = 'modal-contact';
+    const modalInfoPhone = document.createElement('p');
+    modalInfoPhone.className = 'modal-info-phone';
+    modalInfoPhone.textContent = `${employee.cell}`;
+    const modalInfoAddress = document.createElement('p');
+    modalInfoAddress.className = 'modal-info-address';
+    modalInfoAddress.textContent = `${employee.location.street.number} ${employee.location.street.name}, ${employee.location.state} ${employee.location.postcode}`;
+    const modalInfoDob = document.createElement('p');
+    modalInfoDob.className = 'modal-info-dob';
+    modalInfoDob.textContent = `${employee.dob.date.slice(5, 7)}/${employee.dob.date.slice(8, 10)}/${employee.dob.date.slice(2, 4)}`;
+    modalContainer.appendChild(modalOverlay);
+    modalOverlay.appendChild(modalDiv);
+    modalDiv.appendChild(closeButton);
+    modalDiv.appendChild(modalImgDiv);
+    modalImgDiv.appendChild(employeeImg);
+    modalDiv.appendChild(modalInfo);
+    modalInfo.appendChild(modalInfoName);
+    modalInfo.appendChild(modalInfoEmail);
+    modalInfo.appendChild(modalInfoCity);
+    modalDiv.appendChild(divider);
+    modalDiv.appendChild(modalContact);
+    modalContact.appendChild(modalInfoPhone);
+    modalContact.appendChild(modalInfoAddress);
+    modalContact.appendChild(modalInfoDob);
+};
 
-modalContainer.addEventListener('click', () => {
+modalContainer.addEventListener('click', (event) => {
     if (event.target.textContent === 'x'){
-        modalContainer.removeChild(modalContainer.lastElementChild);
+        let modalOverlay = document.querySelector('.modal-overlay');
+        modalContainer.removeChild(modalOverlay);
     }
-
 });
-
-
