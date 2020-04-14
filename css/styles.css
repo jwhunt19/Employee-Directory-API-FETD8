@@ -87,6 +87,7 @@ h1 {
 .modal span {
     float: right;
     margin: 5px 15px 0px 0px;
+    font-size: 20px;
 }
 
 .modal-img-div img {
