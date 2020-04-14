@@ -66,13 +66,54 @@ h1 {
     color: #83898D;
 }
 
-#modal-container {
-    display: none;
-    visibility: hidden;
-    overflow: hidden;
+.modal-overlay {
     position: absolute;
     top: 0;
-    right: 0;
-    width: 0px;
-    height: 0px;
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
 }
+
+.modal {
+    height: 55vh;
+    width: 315px;
+    margin: 12% auto;
+    background-color: #FFFFFF;
+    border: 2px solid #DFDFDF;
+    border-radius: 5px;
+}
+
+.modal span {
+    float: right;
+    margin: 5px 15px 0px 0px;
+}
+
+.modal-img-div img {
+    border-radius: 50%;
+    margin-top: 30px;
+}
+
+.modal-info-name {
+    font-weight: 900;
+    margin-top: 10px;
+    color: #404A51;
+}
+
+.modal-info-email,
+.modal-info-city,
+.modal-info-phone,
+.modal-info-address,
+.modal-info-dob {
+    font-size: 14px;
+    margin-top: 10px;
+    color: #83898D;
+}
+
+.divider {
+    margin: 25px auto;
+    background-color: #DADADA;
+    height: 1px;
+    width: 80%;
+}
+
